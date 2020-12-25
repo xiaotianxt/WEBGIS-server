@@ -11,7 +11,7 @@ namespace WebGISSocket
     class GISThreadHandler
     {
         public TcpListener myTcplistener;
-        static string webRoot = "/home/tian/html";
+        static string webRoot = "/Users/tian/Desktop/WEBGIS-server/www/";
         static string defaultPage = "index.html,home.html";
         public void HandleThread()
         {
@@ -64,7 +64,7 @@ namespace WebGISSocket
         /// <returns></returns>
         static string RouteHandle(string request)
         {
-            string retRoute = "wms.xml";
+            string retRoute = "WMTS/wmts.xml";
             string[] strs = request.Split(new string[] { "\r\n" }, StringSplitOptions.None);  //以“换行”作为切分标志
             if (strs.Length > 0)  //解析出请求路径、post传递的参数(get方式传递参数直接从url中解析)
             {
@@ -81,24 +81,9 @@ namespace WebGISSocket
                     Console.WriteLine(real_data);
                     string name = real_data.Split('=')[1];
 		    Console.WriteLine(name);
-                    if (name == "马睿平")
-                    {
-                        return "/mrp.html";
-                    }
-                    else if (name == "田雨沛")
-                    {
-                        return "/typ.html";
-                    }
-                    else if (name == "叶瑞麟")
-                    {
-                        return "/yrl.html";
-                    }
-                    else{
-                        return "/wms.xml";
-                    }
                 }
 
-                return "/wms.xml";
+                return "WMTS/wmts.xml";
             }
 
             return retRoute;
